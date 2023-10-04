@@ -6,14 +6,20 @@ void setup()
 void draw()
 {
   background(0);
-for(int y = 0; y<1000; y += 105)
+    int sum = 0;
+for(int y = 0; y<900; y += 105)
   {
     for(int x = 0; x<1000; x+= 105)
     {
       Die bob = new Die(x,y);
       bob.show();
+      sum = sum + bob.rollNum;
     }
   }
+          textSize(35);
+    text("sum: " + sum, 440, 950, 200, 200);
+      fill(0);
+    rect(440, 950, 10, 10);
 }
 void mousePressed()
 {
@@ -21,7 +27,7 @@ void mousePressed()
 }
 class Die //models one single dice cube
 {
-  int myX, myY, rollNum, r, g, b;
+  int myX, myY, rollNum, r, g, b, rDot, bDot, gDot;
 
   Die(int x, int y) //constructor
   {
@@ -31,6 +37,9 @@ class Die //models one single dice cube
     r = (int)(Math.random()*100 +100);
     g = (int)(Math.random()*100 +100);
     b = (int)(Math.random()*100 +100);
+    rDot = (int)(Math.random()*100 +100);
+    gDot = (int)(Math.random()*100 +100);
+    bDot = (int)(Math.random()*100 +100);
   }
   void roll()
   {
@@ -38,8 +47,9 @@ class Die //models one single dice cube
   }
   void show()
   {
-    rect(myX, myY, 100, 100);
     fill(r, g, b);
+        rect(myX, myY, 100, 100);
+    fill(rDot, gDot, bDot);
     if (rollNum==1) {
         ellipse(myX+50, myY+50, 20, 20);
     } else if (rollNum==2) {
